@@ -69,6 +69,15 @@ class Range:
                 self.end_inclusive == other.end_inclusive and
                 self.float == other.float)
 
+    def __str__(self):
+        result = ""
+        result += RANGE_START_INCLUSIVE if self.start_inclusive else RANGE_START_EXCLUSIVE
+        result += str(self.start)
+        result += RANGE_INDICATOR
+        result += str(self.end)
+        result += RANGE_END_INCLUSIVE if self.start_inclusive else RANGE_END_EXCLUSIVE
+        return result
+
 
 def _parse_value(value: str) -> int or float:
     if "inf" in value or "∞" in value:
