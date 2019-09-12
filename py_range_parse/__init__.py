@@ -63,13 +63,12 @@ class Range:
 def _parse_value(value: str) -> int or float:
     if "inf" in value or "∞" in value:
         result = math.inf
+        if value.startswith("-"):
+            result = -result
     elif FLOAT_INDICATOR in value:
         result = float(value)
     else:
         result = int(value)
-
-    if value.startswith("-"):
-        result = -result
 
     return result
 

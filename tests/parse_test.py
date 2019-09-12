@@ -20,12 +20,14 @@ class ParseTest(unittest.TestCase):
     @staticmethod
     def test_parse_range_negative():
         parsed_range = parse_range("[-5..-2]")
-        assert parsed_range is not None
+        assert parsed_range.start == -5
+        assert parsed_range.end == -2
 
     @staticmethod
     def test_parse_range_negative_inverted():
         parsed_range = parse_range("[5..-2]")
-        assert parsed_range is not None
+        assert parsed_range.start == -2
+        assert parsed_range.end == 5
 
     @staticmethod
     def test_float_range_contains():
