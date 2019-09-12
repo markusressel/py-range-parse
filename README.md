@@ -14,15 +14,39 @@ and hopefully many others :)
 pip install py-range-parse
 ```
 
-TODO: code example
-
 ```python
+from py_range_parse import parse_range
 
+range = parse_range("[0..5]")
 ```
 
 ## Input formats
 
-TODO: list accepted input formats
+* `[-2..5]`
+* `]-2..5]`
+* `[-2..5[`
+* `]-2..5[`
+* `[5..-2]`
+* `[5..-2]`
+
+### Infinity
+
+* `[-inf..inf]`
+
+### Exclude borders
+* `]0..5.5]`
+* `]0..inf[`
+
+## Operations
+
+### Contains
+
+```python
+> from py_range_parse import parse_range
+> range = parse_range("[0, 5]")
+> print(4 in range)
+True
+```
 
 # Contributing
 
