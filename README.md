@@ -20,6 +20,13 @@ from py_range_parse import parse_range
 range = parse_range("[0..5]")
 ```
 
+or create on manually:
+
+```python
+from py_range_parse import Range
+range = Range(0,5)
+```
+
 ## Input formats
 
 * `[-2..5]`

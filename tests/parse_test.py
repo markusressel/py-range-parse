@@ -13,7 +13,7 @@ class ParseTest(unittest.TestCase):
 
     @staticmethod
     def test_parse_all_values():
-        parsed_range = parse_range("[-inf..inf]")
+        parsed_range = parse_range("[-inf..∞]")
         assert -math.inf in parsed_range
         assert math.inf in parsed_range
 
