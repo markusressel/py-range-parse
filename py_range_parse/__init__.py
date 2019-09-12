@@ -18,13 +18,7 @@ class Range:
     """
     Class to encapsulate a range
     """
-    start: Number
-    end: Number
-
-    start_inclusive: bool
-    end_inclusive: bool
-
-    float: bool = False
+    float = False
 
     def __init__(self, start: Number, end: Number, start_inclusive: bool = True, end_inclusive: bool = True):
         self.start_inclusive = start_inclusive
