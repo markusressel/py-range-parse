@@ -23,7 +23,7 @@ import subprocess
 
 from setuptools import setup, find_packages
 
-VERSION_NUMBER = "1.4.0"
+VERSION_NUMBER = "1.0.0"
 
 GIT_BRANCH = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
 GIT_BRANCH = GIT_BRANCH.decode()  # convert to standard string
@@ -83,7 +83,7 @@ def read_requirements_file(file_name: str):
 setup(
     name='py_range_parse',
     version=VERSION_NAME,
-    description='Math range parsing',
+    description='Parses commonly used range notations to python objects',
     long_description=readme(),
     long_description_content_type=readme_type(),
     license='MIT',
@@ -95,8 +95,6 @@ setup(
         DEVELOPMENT_STATUS,
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     ],
