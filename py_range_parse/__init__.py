@@ -59,6 +59,16 @@ class Range:
         in_end = self.end_comparison_operator(item, self.end)
         return in_start and in_end
 
+    def __eq__(self, other):
+        if not isinstance(other, Range):
+            return False
+
+        return (self.start == other.start and
+                self.end == other.end and
+                self.start_inclusive == other.start_inclusive and
+                self.end_inclusive == other.end_inclusive and
+                self.float == other.float)
+
 
 def _parse_value(value: str) -> int or float:
     if "inf" in value or "∞" in value:
