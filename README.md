@@ -38,7 +38,7 @@ If both the _start_ and _end_ value are of type `int`, the resulting `Range` wil
 * `[-2 .. 5]`
 * `[10 .. 1]`
 
-If the _end_ value if bigger than the _start_ value the resulting range will automatically be inverted. Therefore `range.start <= range.end` is **always** `True` in a `Range`.
+If the _end_ value is bigger than the _start_ value the resulting range will automatically be inverted. Therefore `range.start <= range.end` is **always** `True` in a `Range`.
 
 
 ### `float` ranges
