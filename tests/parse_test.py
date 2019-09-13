@@ -12,6 +12,12 @@ class ParseTest(unittest.TestCase):
         assert -math.inf in parsed_range
 
     @staticmethod
+    def test_parse_spaces():
+        parsed_range = parse_range("[ -8.3 .. +18.3 ]")
+        assert -8.3 in parsed_range
+        assert 18.3 in parsed_range
+        
+    @staticmethod
     def test_parse_all_values():
         parsed_range = parse_range("[-inf..∞]")
         assert -math.inf in parsed_range
