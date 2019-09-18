@@ -6,73 +6,64 @@ from py_range_parse import parse_range
 
 class ParseTest(unittest.TestCase):
 
-    @staticmethod
-    def test_parse_equal_values():
+    def test_parse_equal_values(self):
         parsed_range = parse_range("[-inf..-inf]")
-        assert -math.inf in parsed_range
+        self.assertIn(-math.inf, parsed_range)
 
-    @staticmethod
-    def test_parse_all_values():
+    def test_parse_all_values(self):
         parsed_range = parse_range("[-inf..∞]")
-        assert -math.inf in parsed_range
-        assert math.inf in parsed_range
+        self.assertIn(-math.inf, parsed_range)
+        self.assertIn(math.inf, parsed_range)
 
-    @staticmethod
-    def test_parse_range_negative():
+    def test_parse_range_negative(self):
         parsed_range = parse_range("[-5..-2]")
-        assert parsed_range.start == -5
-        assert parsed_range.end == -2
+        self.assertEqual(parsed_range.start, -5)
+        self.assertEqual(parsed_range.end, -2)
 
-    @staticmethod
-    def test_parse_range_negative_inverted():
+    def test_parse_range_negative_inverted(self):
         parsed_range = parse_range("[5..-2]")
-        assert parsed_range.start == -2
-        assert parsed_range.end == 5
+        self.assertEqual(parsed_range.start, -2)
+        self.assertEqual(parsed_range.end, 5)
 
-    @staticmethod
-    def test_float_range_contains():
+    def test_float_range_contains(self):
         parsed_range = parse_range("[1.0..4.3]")
 
-        assert 1 in parsed_range
-        assert 1.0 in parsed_range
+        self.assertIn(1, parsed_range)
+        self.assertIn(1.0, parsed_range)
 
-        assert 2 in parsed_range
-        assert 2.0 in parsed_range
-        assert 2.1 in parsed_range
+        self.assertIn(2, parsed_range)
+        self.assertIn(2.0, parsed_range)
+        self.assertIn(2.1, parsed_range)
 
-        assert 4 in parsed_range
-        assert 4.3 in parsed_range
+        self.assertIn(4, parsed_range)
+        self.assertIn(4.3, parsed_range)
 
-    @staticmethod
-    def test_int_range_contains():
+    def test_int_range_contains(self):
         parsed_range = parse_range("[1..4]")
 
-        assert 1 in parsed_range
-        assert 1.0 in parsed_range
+        self.assertIn(1, parsed_range)
+        self.assertIn(1.0, parsed_range)
 
-        assert 2 in parsed_range
-        assert 2.0 in parsed_range
-        assert 2.1 not in parsed_range
+        self.assertIn(2, parsed_range)
+        self.assertIn(2.0, parsed_range)
+        self.assertNotIn(2.1, parsed_range)
 
-        assert 4 in parsed_range
-        assert 4.0 in parsed_range
+        self.assertIn(4, parsed_range)
+        self.assertIn(4.0, parsed_range)
 
-    @staticmethod
-    def test_int_range_exclude():
+    def test_int_range_exclude(self):
         parsed_range = parse_range("]1..4[")
         assert parsed_range is not None
 
-    @staticmethod
-    def test_int_range_inf():
+    def test_int_range_inf(self):
         parsed_range = parse_range("]-inf..4[")
-        assert -math.inf not in parsed_range
-        assert -10000000 in parsed_range
+        self.assertNotIn(-math.inf, parsed_range)
+        self.assertIn(-10000000, parsed_range)
 
-    @staticmethod
-    def test_int_range_inf_inverted():
+    def test_int_range_inf_inverted(self):
         parsed_range = parse_range("]inf..4[")
-        assert -math.inf not in parsed_range
-        assert 3 not in parsed_range
-        assert 4 not in parsed_range
-        assert 4.000000001 in parsed_range
-        assert 10000000 in parsed_range
+        self.assertNotIn(-math.inf, parsed_range)
+        self.assertNotIn(3, parsed_range)
+        self.assertNotIn(4, parsed_range)
+        self.assertIn(4.000000001, parsed_range)
+        self.assertIn(10000000, parsed_range)
