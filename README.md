@@ -29,28 +29,48 @@ range = Range(0,5)
 
 ## Input formats
 
-* `[-2..5]`
-* `]-2..5]`
-* `[-2..5[`
-* `]-2..5[`
-* `[5..-2]`
-* `[5..-2]`
+When parsing a `Range` from a `str` any whitespace is ignored.
+
+### `int` ranges
+
+If both the _start_ and _end_ value are of type `int`, the resulting `Range` will only consider integers as part of it. If you want to include `float` values as well, at least one of the values has to be a `float`.
+
+* `[-2 .. 5]`
+* `[10 .. 1]`
+
+If the _end_ value is bigger than the _start_ value the resulting range will automatically be inverted. Therefore `range.start <= range.end` is **always** `True` in a `Range`.
+
+
+### `float` ranges
+
+A `float` `Range` includes every possible `float` value between the _start_ and _end_ value.
+
+* `[-2.2 .. 5.123]`
+* `[-2.0 .. 5]`
 
 ### Infinity
 
-* `[-inf..inf]`
+Infinity can also be specified using both `inf` as well as the unicode symbol `∞`. Since it is internally represented using `math.inf` it will behave like a `float`.
+
+* `]-inf .. inf[`
+* `]-∞ .. ∞[`
 
 ### Exclude borders
-* `]0..5.5]`
-* `]0..inf[`
+
+The _start_ and _end_ values can be excluded from the `Range` independent of one another using the open bracket notation.
+
+* `]0 .. 5.5]`
+* `]0 .. inf[`
 
 ## Operations
 
 ### Contains
 
+You can easily check if a value is within a given `Range` like this:
+
 ```python
 > from py_range_parse import parse_range
-> range = parse_range("[0, 5]")
+> range = parse_range("[0 .. 5]")
 > print(4 in range)
 True
 ```

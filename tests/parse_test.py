@@ -10,6 +10,11 @@ class ParseTest(unittest.TestCase):
         parsed_range = parse_range("[-inf..-inf]")
         self.assertIn(-math.inf, parsed_range)
 
+    def test_parse_spaces(self):
+        parsed_range = parse_range("[ -8.3 .. +18.3 ]")
+        self.assertIn(-8.3, parsed_range)
+        self.assertIn(18.3, parsed_range)
+
     def test_parse_all_values(self):
         parsed_range = parse_range("[-inf..∞]")
         self.assertIn(-math.inf, parsed_range)
