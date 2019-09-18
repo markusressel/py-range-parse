@@ -31,6 +31,8 @@ class Range:
             self.end = end
 
         if isinstance(start, float) or isinstance(end, float):
+            self.start = float(start)
+            self.end = float(end)
             self.float = True
 
     @property
@@ -69,9 +71,24 @@ class Range:
                 self.end_inclusive == other.end_inclusive and
                 self.float == other.float)
 
+    def __gt__(self, other):
+        if self.float:
+            other = float(other)
+        else:
+            other = int(other)
+
+        return self.start > other
+
+    def __lt__(self, other):
+        if self.float:
+            other = float(other)
+        else:
+            other = int(other)
+
+        return self.end < other
+
     def __str__(self):
-        result = ""
-        result += RANGE_START_INCLUSIVE if self.start_inclusive else RANGE_START_EXCLUSIVE
+        result = RANGE_START_INCLUSIVE if self.start_inclusive else RANGE_START_EXCLUSIVE
         result += str(self.start)
         result += RANGE_INDICATOR
         result += str(self.end)

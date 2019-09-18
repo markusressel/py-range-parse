@@ -75,6 +75,27 @@ You can easily check if a value is within a given `Range` like this:
 True
 ```
 
+### Comparison
+
+You can compare equality of two `Range` instances using the `==` operator.
+For two ranges to be equal they have to have the same 
+* `start` value
+* `end` value
+* start inclusion
+* end inclusion
+* type (`int` or `float`)
+
+```python
+> from py_range_parse import parse_range
+> range1 = parse_range("[0 .. 5]")
+> range2 = parse_range("[0 .. 5]")
+> range3 = parse_range("[0 .. 5.0]")
+> print(range1 == range2)
+True
+> print(range1 == range3)
+False
+```
+
 # Contributing
 
 GitHub is for social coding: if you want to write code, I encourage contributions through pull requests from forks
