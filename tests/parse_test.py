@@ -72,3 +72,10 @@ class ParseTest(unittest.TestCase):
         self.assertNotIn(4, parsed_range)
         self.assertIn(4.000000001, parsed_range)
         self.assertIn(10000000, parsed_range)
+
+    def test_int_inclusion_inverted(self):
+        parsed_range = parse_range("]2..1]")
+        self.assertNotIn(0, parsed_range)
+        self.assertIn(1, parsed_range)
+        self.assertNotIn(2, parsed_range)
+        self.assertNotIn(3, parsed_range)

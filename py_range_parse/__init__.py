@@ -21,18 +21,23 @@ class Range:
     float = False
 
     def __init__(self, start: Number, end: Number, start_inclusive: bool = True, end_inclusive: bool = True):
-        self.start_inclusive = start_inclusive
-        self.end_inclusive = end_inclusive
         if start > end:
             self.start = end
             self.end = start
+            self.start_inclusive = end_inclusive
+            self.end_inclusive = start_inclusive
         else:
             self.start = start
             self.end = end
+            self.start_inclusive = start_inclusive
+            self.end_inclusive = end_inclusive
 
-        if isinstance(start, float) or isinstance(end, float):
-            self.start = float(start)
-            self.end = float(end)
+        self._ensure_typing()
+
+    def _ensure_typing(self):
+        if isinstance(self.start, float) or isinstance(self.end, float):
+            self.start = float(self.start)
+            self.end = float(self.end)
             self.float = True
 
     @property
