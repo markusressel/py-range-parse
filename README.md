@@ -77,6 +77,24 @@ True
 
 ### Comparison
 
+You can check if a value is above or below a given `Range` using 
+`>` and `<` respectively:
+
+```python
+> from py_range_parse import parse_range
+> range = parse_range("[0 .. 5]")
+> print(6 > range)
+True
+> print(3 > range)
+False
+> print(3 < range)
+False
+> print(-1 < range)
+True
+```
+
+### Equality
+
 You can compare equality of two `Range` instances using the `==` operator.
 For two ranges to be equal they have to have the same 
 * `start` value
