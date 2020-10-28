@@ -1,4 +1,4 @@
-# py-range-parse [![Contributors](https://img.shields.io/github/contributors/markusressel/py-range-parse.svg)](https://github.com/markusressel/py-range-parse/graphs/contributors) [![MIT License](https://img.shields.io/github/license/markusressel/py-range-parse.svg)](/LICENSE) ![Code Size](https://img.shields.io/github/languages/code-size/markusressel/py-range-parse.svg) ![https://badge.fury.io/py/py-range-parse](https://badge.fury.io/py/py-range-parse.svg) [![Build Status](https://travis-ci.org/markusressel/py-range-parse.svg?branch=master)](https://travis-ci.org/markusressel/py-range-parse)
+# py-range-parse [![Contributors](https://img.shields.io/github/contributors/markusressel/py-range-parse.svg)](https://github.com/markusressel/py-range-parse/graphs/contributors) [![MIT License](https://img.shields.io/github/license/markusressel/py-range-parse.svg)](/LICENSE) [![Code Climate](https://codeclimate.com/github/markusressel/py-range-parse.svg)](https://codeclimate.com/github/markusressel/py-range-parse) ![Code Size](https://img.shields.io/github/languages/code-size/markusressel/py-range-parse.svg) ![https://badge.fury.io/py/py-range-parse](https://badge.fury.io/py/py-range-parse.svg) [![Build Status](https://travis-ci.org/markusressel/py-range-parse.svg?branch=master)](https://travis-ci.org/markusressel/py-range-parse)
 
 **py-range-parse** is a library to parse commonly used range 
 notations to python objects that act like sets.
@@ -76,6 +76,24 @@ True
 ```
 
 ### Comparison
+
+You can check if a value is above or below a given `Range` using 
+`>` and `<` respectively:
+
+```python
+> from py_range_parse import parse_range
+> range = parse_range("[0 .. 5]")
+> print(6 > range)
+True
+> print(3 > range)
+False
+> print(3 < range)
+False
+> print(-1 < range)
+True
+```
+
+### Equality
 
 You can compare equality of two `Range` instances using the `==` operator.
 For two ranges to be equal they have to have the same 
