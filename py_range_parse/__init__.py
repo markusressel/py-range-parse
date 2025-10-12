@@ -1,7 +1,6 @@
 import math
 import operator
 import re
-from numbers import Number
 from typing import Optional, Union
 
 RANGE_START_INCLUSIVE = "["
@@ -20,7 +19,13 @@ class Range:
     """
     is_float = False
 
-    def __init__(self, start: Number, end: Number, start_inclusive: bool = True, end_inclusive: bool = True):
+    def __init__(
+        self,
+        start: Union[float, int],
+        end: Union[float, int],
+        start_inclusive: bool = True,
+        end_inclusive: bool = True
+    ):
         if start > end:
             self.start = end
             self.end = start
