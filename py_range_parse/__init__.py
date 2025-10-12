@@ -2,7 +2,7 @@ import math
 import operator
 import re
 from numbers import Number
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 RANGE_START_INCLUSIVE = "["
 RANGE_START_EXCLUSIVE = "]"
@@ -114,13 +114,12 @@ def _parse_value(value: str) -> Union[int, float]:
     return result
 
 
-def parse_range(text: str) -> Optional[Union[List[Range], Range]]:
+def parse_range(text: str) -> Optional[Range]:
     """
     Tries to parse the given text input.
 
     :param text:
-    :return: - List of ranges, if the input can not be represented using a single range
-             - Range, if the input can be represented using a single range
+    :return: - Range, if the input can be represented using a single range
              - None, if the input was None or no input was found
     :raises: ValueError if the input could not be parsed
     """
