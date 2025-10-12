@@ -2,7 +2,7 @@ import math
 import operator
 import re
 from numbers import Number
-from typing import List
+from typing import List, Optional, Union
 
 RANGE_START_INCLUSIVE = "["
 RANGE_START_EXCLUSIVE = "]"
@@ -54,7 +54,7 @@ class Range:
         else:
             return operator.lt
 
-    def __contains__(self, item: int or float):
+    def __contains__(self, item: Union[int, float]) -> bool:
         if not self.float and isinstance(item, float) and not item.is_integer():
             return False
 
@@ -101,7 +101,7 @@ class Range:
         return result
 
 
-def _parse_value(value: str) -> int or float:
+def _parse_value(value: str) -> Union[int, float]:
     if "inf" in value or "∞" in value:
         result = math.inf
         if value.startswith("-"):
@@ -114,7 +114,7 @@ def _parse_value(value: str) -> int or float:
     return result
 
 
-def parse_range(text: str) -> List[Range] or Range or None:
+def parse_range(text: str) -> Optional[Union[List[Range], Range]]:
     """
     Tries to parse the given text input.
 
