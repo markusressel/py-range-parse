@@ -18,7 +18,7 @@ class Range:
     """
     Class to encapsulate a range
     """
-    float = False
+    is_float = False
 
     def __init__(self, start: Number, end: Number, start_inclusive: bool = True, end_inclusive: bool = True):
         if start > end:
@@ -38,7 +38,7 @@ class Range:
         if isinstance(self.start, float) or isinstance(self.end, float):
             self.start = float(self.start)
             self.end = float(self.end)
-            self.float = True
+            self.is_float = True
 
     @property
     def start_comparison_operator(self) -> operator:
@@ -55,10 +55,10 @@ class Range:
             return operator.lt
 
     def __contains__(self, item: Union[int, float]) -> bool:
-        if not self.float and isinstance(item, float) and not item.is_integer():
+        if not self.is_float and isinstance(item, float) and not item.is_integer():
             return False
 
-        if self.float:
+        if self.is_float:
             item = float(item)
         else:
             item = int(item)
@@ -74,10 +74,10 @@ class Range:
                 self.end == other.end and
                 self.start_inclusive == other.start_inclusive and
                 self.end_inclusive == other.end_inclusive and
-                self.float == other.float)
+                self.is_float == other.is_float)
 
     def __gt__(self, other):
-        if self.float:
+        if self.is_float:
             other = float(other)
         else:
             other = int(other)
@@ -85,7 +85,7 @@ class Range:
         return self.start > other
 
     def __lt__(self, other):
-        if self.float:
+        if self.is_float:
             other = float(other)
         else:
             other = int(other)
